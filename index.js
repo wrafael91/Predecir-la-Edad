@@ -1,5 +1,6 @@
 const contenedor = document.querySelector(".container");
 const formulario = document.getElementById("formulario");
+const resultado = document.getElementById("resultado");
 
 
 window.addEventListener('load', () => {
@@ -9,16 +10,24 @@ window.addEventListener('load', () => {
 function buscarNombre(e){
     e.preventDefault();
     //console.log(nombre);
-    //console.log(lugar);
+    //console.log(pais);
     const nombre = document.getElementById("nombre").value;
-    const lugar = document.getElementById("lugar").value;
+    const pais = document.getElementById("pais").value;
 
-    if(nombre === "" && lugar === ""){
+    if(nombre === "" && pais === ""){
         mostrarAdvertencia("Por favor ingrese un nombre");
+        return;
+    } else if(nombre === "" && pais !== ""){
+        mostrarAdvertencia("Por favor ingrese un nombre");
+        return;
+    } else if(nombre !== "" && pais == ""){
+        consultarAPINombre(nombre);
+        return;
+    } else {
+        consultarAPINombreYPais(nombre, pais);
         return;
     }
 
-    consultarAPI(nombre);
 }
 
 function mostrarAdvertencia(mensaje){
@@ -38,12 +47,28 @@ function mostrarAdvertencia(mensaje){
     }
 }
 
-function consultarAPI(nombre){
+function consultarAPINombre(nombre){
     let reg = /,/g;
     let reemplazarComa = nombre.replace(reg, "&name[]=");
-    const url = `https://api.agify.io?name[]=${reemplazarComa}`;
-    console.log(url)
-    fetch(url)
+    const urlNombre = `https://api.agify.io?name[]=${reemplazarComa}`;
+    console.log(urlNombre)
+    
+    fetch(urlNombre)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+    });
+}
+
+function consultarAPINombreYPais(nombre, pais){
+    let reg = /,/g;
+    let reemplazarComa = nombre.replace(reg, "&name[]=");
+    const urlNombreYPais = `https://api.agify.io?name[]=${reemplazarComa}&country_id=${pais}`;
+    console.log(urlNombreYPais);
+
+    fetch(urlNombreYPais)
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data => {
+            console.log(data)
+        });
 }
