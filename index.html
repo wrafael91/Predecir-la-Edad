@@ -13,12 +13,19 @@
             <h2 class="titulo_form">Predice tu Edad</h2>
             <div class="contenedor_form">
                 <div class="input_group">
-                    <input type="text" id="nombre" class="form_input"/>
                     <label for="nombre">*Ingrese el nombre</label>
+                    <input type="text" id="nombre" class="form_input"/>
                 </div>
                 <div class="input_group">
-                    <input type="text" id="pais" class="form_input"/>
                     <label for="pais">Pais (opcional)</label>
+                    <select id="pais" class="form_input">
+                        <option></option>
+                        <option value="AR">Argentina</option>
+                        <option value="CO">Colombia</option>
+                        <option value="US">Estados Unidos</option>
+                        <option value="MX">México</option>
+                        <option value="ES">España</option>
+                    </select>
                 </div>
                 <input type="submit" class="form_submit" value="Predecir la edad"></input>
                 <div id="resultado"></div>
