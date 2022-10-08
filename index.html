@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
     <title>Predecir edad</title>
 </head>
 <body>
-    <form action="" id="formulario" method="post">
-
-        <label for="nombre">Ingrese el nombre</label>
-        <input type="text" id="nombre"/>
-        <button type="submit">Hacer predicción</button>
+    <form class="formulario" id="formulario" method="post">
+        <h2 class="titulo_form">Predice tu edad</h2>
+        <div class="contenedor_form">
+            <div class="input_group">
+                <input type="text" id="nombre" class="form_input"/>
+                <label for="nombre">Ingrese el nombre</label>
+            </div>
+            <div class="input_group">
+                <input type="text" id="ciudad" class="form_input"/>
+                <label for="nombre">En qué ciudad está</label>
+            </div>
+            <input type="submit" class="form_submit" value="Predecir la edad"></input>
+        </div>
 
     </form>
     <div id="prediccion"></div>
