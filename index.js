@@ -39,7 +39,9 @@ function mostrarAdvertencia(mensaje){
 }
 
 function consultarAPI(nombre){
-    const url = `https://api.agify.io/?name=`+nombre;
+    let reg = /,/g;
+    let reemplazarComa = nombre.replace(reg, "&name[]=");
+    const url = `https://api.agify.io?name[]=${reemplazarComa}`;
     console.log(url)
     fetch(url)
         .then(res => res.json())
