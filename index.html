@@ -5,25 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
-    <title>Predecir edad</title>
+    <title>App Predecir Edad</title>
 </head>
 <body>
-    <form class="formulario" id="formulario" method="post">
-        <h2 class="titulo_form">Predice tu edad</h2>
-        <div class="contenedor_form">
-            <div class="input_group">
-                <input type="text" id="nombre" class="form_input"/>
-                <label for="nombre">Ingrese el nombre</label>
+    <div class="container">
+        <form class="formulario" id="formulario" method="get">
+            <h2 class="titulo_form">Predice tu Edad</h2>
+            <div class="contenedor_form">
+                <div class="input_group">
+                    <input type="text" id="nombre" class="form_input"/>
+                    <label for="nombre">*Ingrese el nombre</label>
+                </div>
+                <div class="input_group">
+                    <input type="text" id="lugar" class="form_input"/>
+                    <label for="lugar">Ciudad/Pais (opcional)</label>
+                </div>
+                <input type="submit" class="form_submit" value="Predecir la edad"></input>
+                <div id="prediccion"></div>
             </div>
-            <div class="input_group">
-                <input type="text" id="ciudad" class="form_input"/>
-                <label for="nombre">En qué ciudad está</label>
-            </div>
-            <input type="submit" class="form_submit" value="Predecir la edad"></input>
-        </div>
-
-    </form>
-    <div id="prediccion"></div>
+        </form>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>

@@ -20,6 +20,11 @@ body{
     margin-bottom: .5em;
 }
 
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
 .formulario {
     background-color: #fff;
     width: 90%;
@@ -46,4 +51,23 @@ body{
     color: #4a4a4a;
     font-size: 1rem;
     padding: .6em .3em;
+}
+
+.errorInputsBlanco {
+    width: 90%;
+    max-width: 350px;
+    color: red;
+    margin: auto;
+    font-weight: 500;
+}
+
+.form_submit {
+    background: #3866f2;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    padding: .8em 0;
+    border: none;
+    border-radius: .5em;
 }
