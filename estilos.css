@@ -71,3 +71,7 @@ body{
     border: none;
     border-radius: .5em;
 }
+
+.parrafosResultado{
+    list-style-type: square;
+}

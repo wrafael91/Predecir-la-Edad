@@ -9,29 +9,32 @@ window.addEventListener('load', () => {
 
 function buscarNombre(e){
     e.preventDefault();
-    //console.log(nombre);
-    //console.log(pais);
+
     const nombre = document.getElementById("nombre").value;
     const pais = document.getElementById("pais").value;
 
-    if(nombre === "" && pais === ""){
-        mostrarAdvertencia("Por favor ingrese un nombre");
-        return;
-    } else if(nombre === "" && pais !== ""){
-        mostrarAdvertencia("Por favor ingrese un nombre");
-        return;
-    } else if(nombre !== "" && pais == ""){
-        consultarAPINombre(nombre);
-        return;
-    } else {
-        consultarAPINombreYPais(nombre, pais);
-        return;
+    try {
+        if(nombre === "" && pais === ""){
+            mostrarAdvertencia("Por favor ingrese un nombre");
+            return;
+        } else if(nombre === "" && pais !== ""){
+            mostrarAdvertencia("Por favor ingrese un nombre");
+            return;
+        } else if(nombre !== "" && pais == ""){
+            consultarAPINombre(nombre);
+            return;
+        } else {
+            consultarAPINombreYPais(nombre, pais);
+            return;
+        }
+    } catch (error) {
+        return (error);
     }
 
 }
 
 function mostrarAdvertencia(mensaje){
-    //console.log(mensaje);
+
     const alerta = document.querySelector("errorInputsBlanco");
     if(!alerta){
         const alerta = document.createElement('div');
@@ -51,24 +54,57 @@ function consultarAPINombre(nombre){
     let reg = /,/g;
     let reemplazarComa = nombre.replace(reg, "&name[]=");
     const urlNombre = `https://api.agify.io?name[]=${reemplazarComa}`;
-    console.log(urlNombre)
     
     fetch(urlNombre)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-    });
+        .then(res => res.json())
+        .then(data => {
+            if(data[0].count === 0){
+                mostrarAdvertencia("No se encontraron coincidencias, ingrese otro nombre");
+            }
+            mostrarResultadosNombre(data);
+        });
 }
 
 function consultarAPINombreYPais(nombre, pais){
     let reg = /,/g;
     let reemplazarComa = nombre.replace(reg, "&name[]=");
     const urlNombreYPais = `https://api.agify.io?name[]=${reemplazarComa}&country_id=${pais}`;
-    console.log(urlNombreYPais);
 
     fetch(urlNombreYPais)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            if(data[0].count === 0){
+                mostrarAdvertencia("No se encontraron coincidencias, ingrese otro nombre y pais");
+            }
+            mostrarResultadosNombreYLugar(data);
         });
 }
+
+function mostrarResultadosNombre(data){
+    
+    for(let i = 0; i <= data.length; i++){
+        resultado.classList.add('parrafosResultado');
+        resultado.innerHTML += `
+            <li>${data[i].name} tiene ${data[i].age} años de edad</li>
+        `;
+        
+        setTimeout(() => {
+            resultado.remove()
+        }, 10000);
+    }
+}
+
+function mostrarResultadosNombreYLugar(data){
+
+    for(let i = 0; i <= data.length; i++){
+        resultado.classList.add('parrafosResultado');
+        resultado.innerHTML += `
+            <li>${data[i].name} tiene ${data[i].age} años de edad</li>
+        `;
+
+        setTimeout(() => {
+            resultado.remove()
+        }, 10000);
+    }
+}
+
