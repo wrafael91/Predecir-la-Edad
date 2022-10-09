@@ -58,6 +58,7 @@ function consultarAPINombre(nombre){
     fetch(urlNombre)
         .then(res => res.json())
         .then(data => {
+            limpiarDatos();
             if(data[0].count === 0){
                 mostrarAdvertencia("No se encontraron coincidencias, ingrese otro nombre");
             }
@@ -73,6 +74,7 @@ function consultarAPINombreYPais(nombre, pais){
     fetch(urlNombreYPais)
         .then(res => res.json())
         .then(data => {
+            limpiarDatos();
             if(data[0].count === 0){
                 mostrarAdvertencia("No se encontraron coincidencias, ingrese otro nombre y pais");
             }
@@ -88,9 +90,6 @@ function mostrarResultadosNombre(data){
             <li>${data[i].name} tiene ${data[i].age} años de edad</li>
         `;
         
-        setTimeout(() => {
-            resultado.remove()
-        }, 10000);
     }
 }
 
@@ -102,9 +101,11 @@ function mostrarResultadosNombreYLugar(data){
             <li>${data[i].name} tiene ${data[i].age} años de edad</li>
         `;
 
-        setTimeout(() => {
-            resultado.remove()
-        }, 10000);
     }
 }
 
+function limpiarDatos(){
+    while(resultado.firstChild){
+        resultado.removeChild(resultado.firstChild);
+    }
+}
